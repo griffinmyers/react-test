@@ -19,6 +19,6 @@ Takeaways:
 * Try as best you can to assert views using a shallow rendering technique. 
 * If you do need a full DOM to verify the correctness of a component, ensure it is properly unounted at the conclusion of your tests.  
   * One idea would be to write a 'context manager' for a mounted component `mount(<Foo />, (c) => { expect(c)... })` so we can abstract mounting / umounting boilerplate from most tests
-  * Another idea is to define a global `afterEach` hook that unmounts a magical array set on `this`: somewhere in your tests say `this._mountPoints.push(componentImFinishedWith)`, `afterEach(() => this._mountPoints.forEach(m => unmount(m)))`
+  * Another idea is to define a global `afterEach` hook that unmounts a magical array set on `this`: somewhere in your tests say `this._mountPoints.push(componentImFinishedWith)`, `afterEach(() => this._mountPoints.forEach(unmount))`
 
 
