@@ -1,12 +1,12 @@
 const EventEmitter = require('events');
 const util = require('util');
 
-function MyEmitter() {
+function Store() {
   EventEmitter.call(this);
 }
 
-util.inherits(MyEmitter, EventEmitter);
+util.inherits(Store, EventEmitter);
 
-const store = new MyEmitter();
+const store = new Store();
 store.setMaxListeners(0);
 export default store;
