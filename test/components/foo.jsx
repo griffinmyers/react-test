@@ -9,8 +9,9 @@ describe('<Foo />', function() {
 
   for (var i = 0; i < 5; ++i) {
     it('mounts', function() {
-      const rendered = mount(<Foo />);
-      expect(rendered.find('.foo').length).to.equal(1);
+      const wrapper = mount(<Foo />);
+      expect(wrapper.find('.foo').length).to.equal(1);
+      wrapper.unmount();
     });
   }
 

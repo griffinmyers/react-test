@@ -37,21 +37,15 @@ import { mount } from 'enzyme';
  *
  */
 export default function safeMount(component, cb, done) {
-
-  const div = document.createElement('div');
-  const wrapper = mount(component, { attachTo: div });
-
-  function cleanUp() {
-    wrapper.detach();
-    done();
-  }
+  const wrapper = mount(component);
 
   if (typeof done === 'function') {
-    cb(wrapper, cleanUp);
-    return;
+    cb(wrapper, function cleanUp() {
+      wrapper.unmount();
+      done();
+    });
+  } else {
+    cb(wrapper);
+    wrapper.unmount();
   }
-
-  cb(wrapper);
-  wrapper.detach();
-  return;
 }
